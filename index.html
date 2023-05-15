@@ -8,19 +8,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- id container for questions -->
     <div id="question-container" class="hide">
-        <div id="timer"></div> <!-- Add this line for the timer -->
+        <div id="timer"></div> 
         <div id="question"></div>
         <div id="answer-buttons"></div>
     </div>
-
+<!-- the front page of the quiz -->
     <div id="start-container">
         <h1>Quiz of Random Knowledge You Probably Know Already</h1>
         <p>Test your knowledge in random knowledge</p>
         <button id="start-btn" class="btn">Begin Quiz</button>
         <button id="view-scores-btn" class="btn">View Scores</button>
     </div>
-
+<!-- id container for the end of quiz -->
     <div id="end-container" class="hide">
         <h1>Quiz Completed</h1>
         <p>Your final score is <span id="score"></span> out of 8.</p>
@@ -31,8 +32,8 @@
             <button id="submit-btn" class="btn">Submit</button>
         </form>
     </div>
-
-    <div id="high-scores-container" class="hide">
+    <!-- the id container for highcores -->
+    <div id="high-scores-container" class="hide"> 
         <h2>High Scores</h2> 
         <ul id="high-scores-list"></ul>
     </div>

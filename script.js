@@ -10,7 +10,7 @@ const initialsInput = document.getElementById('initials');
 const highScoresContainer = document.getElementById('high-scores-container');
 const highScoresList = document.getElementById('high-scores-list');
 const startContainer = document.getElementById('start-container');
-
+// all my items that needed to be defined in js
 
 
 let questions = [
@@ -51,28 +51,28 @@ let questions = [
     ],
   },
 ];
-
+// all my questions
 let currentQuestionIndex = 0;
 let score = 0;
 let timeRemaining = 20;
 let timerId;
-
+// setting up my time on the timer and starting point og the score
 startButton.addEventListener('click', startQuiz);
 submitButton.addEventListener('click', saveScore);
 viewScoresButton.addEventListener('click', showHighScores);
-
+// my event listeners to have my buttons work
 function startQuiz() {
   document.getElementById('start-container').classList.add('hide');
   questionContainer.classList.remove('hide');
   showQuestion();
   startTimer();
 }
-
+// function to start quiz
 function showHighScores() {
     document.getElementById('start-container').classList.add('hide'); // Hide the start container
     highScoresContainer.classList.remove('hide'); // Show the high scores container
   }
-
+//allows highscores to be seen
 function showQuestion() {
   const question = questions[currentQuestionIndex];
   document.getElementById('question').innerText = question.question;
@@ -89,7 +89,7 @@ function showQuestion() {
     answerButtonsElement.appendChild(button);
   });
 }
-
+//shows the questions when game starts
 function selectAnswer(e) {
     const selectedButton = e.target;
     const correct = selectedButton.dataset.correct;
@@ -117,15 +117,14 @@ function selectAnswer(e) {
       finalScoreElement.innerText = calculateScore(); // Display final score
     }
   }
-  
+  //actions for when question is answered rightly or wrongly
   function calculateScore() {
-    // Calculate the score out of 8 points, deducting 2 points for each incorrect answer
     const maxScore = questions.length * 2;
     const deductedPoints = Math.max(0, (questions.length - score / 2) * 2);
     const finalScore = maxScore - deductedPoints;
     return finalScore;
   }
-  
+  //calculates the score
 function setStatusClass(element, correct) {
   clearStatusClass(element);
   if (correct === 'true') {
@@ -134,12 +133,12 @@ function setStatusClass(element, correct) {
     element.classList.add('wrong');
   }
 }
-
+//connected to css colors correct answer green and wrong answer red
 function clearStatusClass(element) {
   element.classList.remove('correct');
   element.classList.remove('wrong');
 }
-
+//removes color from answers after answering
 function startTimer() {
   timerId = setInterval(updateTimer, 1000);
 }
@@ -154,12 +153,11 @@ function updateTimer() {
 
   if (timeRemaining <= 0) {
     stopTimer();
-    // Perform actions when the timer reaches 0
   }
 }
-
+// functions for the timer
 function calculateScore() {
-  return Math.max(0, score); // Ensure the score is not negative
+  return Math.max(0, score); 
 }
 
 function saveScore(event) {
@@ -175,15 +173,15 @@ function saveScore(event) {
       localStorage.setItem('quizScores', JSON.stringify(savedScores));
       initialsInput.value = '';
       submitButton.disabled = true;
-      showHighScores(); // After saving the score, display the high scores
+      showHighScores(); 
     }
 }
-  
+  //saves the score
 
     function showHighScores() {
-        document.getElementById('start-container').classList.add('hide'); // Hide the start container
-        questionContainer.classList.add('hide'); // Hide the question container
-        endContainer.classList.add('hide'); // Hide the end container
+        document.getElementById('start-container').classList.add('hide'); 
+        questionContainer.classList.add('hide'); 
+        endContainer.classList.add('hide');
       
         const savedScores = JSON.parse(localStorage.getItem('quizScores')) || [];
         const sortedScores = savedScores.sort((a, b) => b.score - a.score);
@@ -195,5 +193,6 @@ function saveScore(event) {
           highScoresList.appendChild(listItem);
         });
       
-        highScoresContainer.classList.remove('hide'); // Show the high scores container
+        highScoresContainer.classList.remove('hide'); 
       }
+      //recorded high scores
